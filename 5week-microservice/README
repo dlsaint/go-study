@@ -1,0 +1,15 @@
+1. 参考 Hystrix 实现一个滑动窗口计数器。
+
+简单实现, 在rolling-window.go, 没有实现测试用例
+
+调用办法:
+size 桶队列大小
+reqThreshold 请求阈值
+failedThreshold 失败率阈值
+brokeTimeGap 熔断恢复的时间间隔
+
+rw:=NewRollingWindow(size, reqThreshold, failedThreshold, brokeTimeGap) //new实例
+rw.Launch() //开启
+
+rw.RecordReqResult(true|false) //记录请求
+rw.Broken() //判断是否发生熔断

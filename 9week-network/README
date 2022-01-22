@@ -1,0 +1,11 @@
+1. 总结几种 socket 粘包的解包方式：fix length/delimiter based/length field based frame decoder。尝试举例其应用。
+  1. 固定长度, read socket的fd时候按指定的长度大小读取, 例子: ICMP
+  2. 分隔符, read socket的fd时候遇到指定分隔符再截取, 然后解析内容, 再根据内容重复步骤. 例子: redis的通信协议, http协议
+  3. 消息头指定长度, read socket的fd时候, 按照长度接受内容, 然后再解析包内容, 例子: goim, tcp本身也是
+
+2. 实现一个从 socket connection 中解码出 goim 协议的解码器。
+
+参考goim的协议https://github.com/Terry-Mao/goim/blob/master/api/protocol/protocol.go,
+代码在decode.go, 发布的方法是Decode
+
+
